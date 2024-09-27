@@ -15,13 +15,12 @@ app = Flask(__name__)
 
 # Define as rotas da aplicação.
 @app.route('/')
-def ola():
+def index():
     return render_template('lista.html', titulo = 'Jogos', jogos = lista_de_jogos)
-
 
 @app.route('/novo')
 def novo():    
-    return render_template('novo.html', titulo = 'Novo Jogo')
+    return render_template('novo.html', titulo= 'Novo Jogo')
 
 @app.route('/criar', methods=['POST',])
 def criar():
@@ -33,7 +32,7 @@ def criar():
     lista_de_jogos.append(jogo)
     return render_template('lista.html', ttulo = 'jogos', jogos = lista_de_jogos)
 
-app.run()
+app.run(debug=True)
 #Caso eu queira usara a porta 8080 para a aplicação ou permitir acessos internos
 # trecho da app
 # app.run(host='0.0.0.0', port=8080)
