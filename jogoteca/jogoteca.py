@@ -16,7 +16,7 @@ app = Flask(__name__)
 @app.route('/')
 
 def ola():
-    jogo1= Jogo('Tetris', 'Puzzle', 'Atari')
+    jogo1 = Jogo('Tetris', 'Puzzle', 'Atari')
     jogo2 = Jogo('Pac-Man', 'Ação', 'Atari')
     jogo3 = Jogo('Donkey Kong', 'Ação', 'Nintendo')
 
