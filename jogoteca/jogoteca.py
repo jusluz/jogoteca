@@ -28,7 +28,6 @@ def criar():
     categoria = request.form['categoria']
     console = request.form['console']
     jogo = Jogo(nome, categoria, console)
-
     lista_de_jogos.append(jogo)
     return redirect('/')
 
