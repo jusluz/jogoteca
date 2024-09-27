@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 class Jogo:
     def __init__(self, nome, categoria, console):
         self.nome = nome
@@ -30,7 +30,7 @@ def criar():
     jogo = Jogo(nome, categoria, console)
 
     lista_de_jogos.append(jogo)
-    return render_template('lista.html', ttulo = 'jogos', jogos = lista_de_jogos)
+    return redirect('/')
 
 app.run(debug=True)
 #Caso eu queira usara a porta 8080 para a aplicação ou permitir acessos internos
