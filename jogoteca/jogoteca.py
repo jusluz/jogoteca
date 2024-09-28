@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session, flash
 class Jogo:
     def __init__(self, nome, categoria, console):
         self.nome = nome
@@ -12,6 +12,7 @@ lista_de_jogos: list = [jogo1, jogo2, jogo3]
 
 # Inicializador aplicação Flask
 app = Flask(__name__)
+app.secret_key = 'qualquer_chave' # para usar a sessão
 
 # Define as rotas da aplicação.
 @app.route('/')
@@ -37,15 +38,21 @@ def login():
 
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
-    usuario = request.form['usuario']
-    senha = request.form['senha']
-    if usuario == 'admin' and senha == '123':
+    if 'senha' == request.form['senha']:
+        session['usuario_logado'] = request.form['usuario']
+        flash(session['usuario_logado'] + 'logado com sucesso.')
         return redirect('/')
     else:
+        flash('Usuário não logado, digite suas credenciais')
         return redirect('/login')
     
+@app.route('/logout')
+def logout():
+    session['usuario_logado'] = None
+    flash('Logout efetuado com sucesso.')
+    return redirect('/')
 
 app.run(debug=True)
-#Caso eu queira usara a porta 8080 para a aplicação ou permitir acessos internos
+#Caso se queira usara a porta 8080 para a aplicação ou permitir acessos internos
 # trecho da app
 # app.run(host='0.0.0.0', port=8080)
