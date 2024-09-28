@@ -22,7 +22,7 @@ def index():
 def novo():    
     return render_template('novo.html', titulo= 'Novo Jogo')
 
-@app.route('/criar', methods=['POST',])
+@app.route('/criar', methods=['POST', ])
 def criar():
     nome = request.form['nome']
     categoria = request.form['categoria']
@@ -30,6 +30,20 @@ def criar():
     jogo = Jogo(nome, categoria, console)
     lista_de_jogos.append(jogo)
     return redirect('/')
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/autenticar', methods=['POST', ])
+def autenticar():
+    usuario = request.form['usuario']
+    senha = request.form['senha']
+    if usuario == 'admin' and senha == '123':
+        return redirect('/')
+    else:
+        return redirect('/login')
+    
 
 app.run(debug=True)
 #Caso eu queira usara a porta 8080 para a aplicação ou permitir acessos internos
