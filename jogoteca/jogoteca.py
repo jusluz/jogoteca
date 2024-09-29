@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, session, flash, url_for
 #from flask_wtf.csrf import CSRFProtect
 
-
 class Jogo:
     def __init__(self, nome, categoria, console):
         self.nome = nome
@@ -32,7 +31,7 @@ usuarios = {
 app = Flask(__name__)
 app.secret_key = 'qualquer_chave' # para usar a sessão
 #  Proteção contra ataques CSRF
-#csrf = CSRFProtect(app)
+
 
 # Define as rotas da aplicação.
 @app.route('/')
